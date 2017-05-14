@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+
+from rest_framework_swagger.views import get_swagger_view
 from rest_framework.authtoken.views import ObtainAuthToken
+
+schema_view = get_swagger_view(title='InstaDJ API')
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/v1/', include('post.urls')),
+    url(r'^api/v1/', include('profile.urls')),
     url(r'^api/v1/auth_token/$', ObtainAuthToken.as_view()),
-    url(r'^api/v1/posts/', include('posts.urls')),
-    url(r'^api/v1/users/', include('account.urls')),
-    url(r'^api/v1/docs/', include('rest_framework_swagger.urls')),
+    url(r'^api/v1/docs/$', schema_view)
 ]

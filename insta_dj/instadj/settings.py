@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
 
     'profile',
-    'posts'
+    'post'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,9 +135,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
-    # Make the API secure by defaulting permission to Admin user only
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
     )
 }

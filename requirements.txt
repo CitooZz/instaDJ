@@ -1,5 +1,5 @@
-Django==1.9.6
-djangorestframework==3.5.4
-django-rest-swagger==0.3.5
+django==1.10.5
+djangorestframework==3.6.3
+django-rest-swagger==2.1.2
 pillow
 django-imagekit==4.0

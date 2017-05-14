@@ -1,7 +1,5 @@
 from django.contrib import admin
-from posts.models import (
-    Post
-)
+from .models import Post
 
 
 @admin.register(Post)

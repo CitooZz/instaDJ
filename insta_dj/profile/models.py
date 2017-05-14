@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from imagekit.models import ProcessedImageField
 
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     followers = models.ManyToManyField(User, related_name='followers')
     following = models.ManyToManyField(User, related_name='following')
@@ -24,4 +24,4 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        Profile.objects.create(user=instance)

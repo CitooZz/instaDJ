@@ -1,13 +1,8 @@
 from rest_framework import viewsets
 from rest_framework import permissions
 
-from posts.models import (
-    Post
-)
-
-from posts.serializers import (
-    PostSerializer
-)
+from .models import Post
+from .serializers import PostSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
