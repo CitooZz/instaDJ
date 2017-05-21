@@ -19,11 +19,11 @@ class Post(models.Model):
 
     @staticmethod
     def get_number_of_likes(self):
-        return self.reaction.filter(type='Like')
+        return self.reaction.filter(type=PostReaction.LIKE)
 
     @staticmethod
     def get_number_of_dislikes(self):
-        return self.reaction.filter(type='Dislike')
+        return self.reaction.filter(type=PostReaction.DISLIKE)
 
 
 class Comment(models.Model):
@@ -37,10 +37,12 @@ class Comment(models.Model):
         return self.comment
 
 
-REACTION_TYPES = ['Like', 'Dislike']
+class PostReaction(models.Model):
+    LIKE = 'Like'
+    DISLIKE = 'Dislike'
 
+    REACTION_TYPES = [LIKE, DISLIKE]
 
-class LikeDislike(models.Model):
     post = models.ForeignKey(Post, related_name='reaction')
     user = models.ForeignKey(User)
 
