@@ -28,3 +28,14 @@ class UserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_following_count(self, instance):
         return instance.profile.followings.all().count()
+
+
+class FollowingSerializer(serializers.Serializer):
+    user = serializers.CharField()
+
+    def validate(self, data):
+        qs = User.objects.filter(id=data.get('user'))
+        if not qs.exists():
+            raise serializers.ValidationError('User not found')
+
+        return data
